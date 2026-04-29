@@ -98,7 +98,7 @@ jobs:
       name: Download helm artifacts
       with:
         name: helm-artifacts
-        path: /helm-charts
+        path: ${{github.workspace}}/helm-charts
 
     - name: Set up Helm
       uses: azure/setup-helm@v4.2.0
@@ -107,7 +107,7 @@ jobs:
       run: |
         helm lint ./helm-charts/todoapp
 
-    - name: Tepmlate chart
+    - name: Template chart
       run: |
         helm template todoapp ./helm-charts/todoapp -f ./helm-charts/todoapp/values.yaml
 
